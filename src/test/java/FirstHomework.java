@@ -12,6 +12,7 @@ public class FirstHomework {
     public Integer finalLoanAmout(int a, int b, int c) {
         int d = a * c * (b*12);
        return d;
+
     }
 
 }
