@@ -20,3 +20,4 @@ public class FirstHomeWork1 {
         double e = d + a;
         return (int) e;
 }}
+
