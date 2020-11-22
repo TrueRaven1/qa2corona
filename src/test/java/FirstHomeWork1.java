@@ -5,7 +5,7 @@ public class FirstHomeWork1 {
     @Test
     public void finalSummOfLoan() {
 
-        System.out.println("Main sum is: " + 100000);
+        System.out.println("Main sum is : " + 100000);
 
         System.out.println("Sum of percent is: " + summOfPercent(100000,30, 2.09));
 
