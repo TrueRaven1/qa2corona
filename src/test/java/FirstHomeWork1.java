@@ -10,8 +10,8 @@ public class FirstHomeWork1 {
 
         System.out.println("Main sum is : " + a );
         System.out.println("Sum of percent is: " + summOfPercent(a, b, c));
-        double summ = summOfPercent(a, b, c);
-        System.out.println("Final sum of loan is: " + finalLoanAmout(summ, a));
+        double sum = summOfPercent(a, b, c);
+        System.out.println("Final sum of loan is: " + finalLoanAmout(sum, a));
 
     }
 
