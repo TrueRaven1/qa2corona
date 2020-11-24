@@ -1,6 +1,9 @@
 import org.junit.jupiter.api.Test;
 
 public class FirstHomeWork1 {
+    // Main sum of Loan is "a"
+    // Number of years is "b"
+    // Percent rate is "c"
     public Integer a  = 100000;
     public Integer b = 30;
     public double c = 2.08;
