@@ -7,7 +7,7 @@ public class FirstHomeWork2 {
 
     @Test
     public static void main(String[] args) {
-        String string = "The best of both worlds";
+        String string = "The best of both worlds!4";
         int count = 0;
 
         //Counts each character except space
