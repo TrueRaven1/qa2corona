@@ -6,19 +6,20 @@ import java.util.StringTokenizer;
 public class FirstHomeWork2 {
 
     @Test
-        public static void main(String[] args) {
+    public static void main(String[] args) {
+        String string = "The best of both worlds";
+        int count = 0;
 
+        //Counts each character except space
+        for(int i = 0; i < string.length(); i++) {
+            if(string.charAt(i) != ' ')
+                count++;
+        }
 
-            // Initialized a String variable
-            String str = "Privet Dima!";
+        //Displays the total number of characters present in the given string
+        System.out.println("Total number of characters in a string: " + count);
 
-            // Initialized a count variable which will store the length
-            int count = str.length();
-
-            // Printed the count variable or the length of String.
-            System.out.println("The String has " +count +" characters");
-
-            System.out.println("Number of words in string is :" + countWordsUsingStringTokinizer( "Privet Dima!"));
+        System.out.println("Number of words in string is :" + countWordsUsingStringTokinizer( "The best of both worlds"));
         }
         public static  int countWordsUsingStringTokinizer(String sentence) {
             if (sentence == null || sentence.isEmpty()) {
