@@ -22,5 +22,10 @@ public class TvnetTests {
 
         WebElement acceptBtn = driver.findElement(ACCEPT_COOKIES_BTN);
         acceptBtn.click();
+
+        driver.get("http://www.tvnet.lv/7126335/piektdien-794-jauni-covid-19-inficetie-11-mirusie");
+        driver.get("http://www.tvnet.lv/7126335/piektdien-794-jauni-covid-19-inficetie-11-mirusie/comments");
+
+
     }
 }
