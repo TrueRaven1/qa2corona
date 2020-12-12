@@ -15,7 +15,6 @@ public class FirstHomeWork1 {
         System.out.println("Sum of percent is: " + summOfPercent(a, b, c));
         double sum = summOfPercent(a, b, c);
         System.out.println("Final sum of loan is: " + finalLoanAmout(sum, a));
-
     }
 
     public double summOfPercent(Integer a, Integer b, double c) {
