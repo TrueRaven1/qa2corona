@@ -6,11 +6,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FirstFullTest {
+    private final By ACCEPT_COOKIES_BTN = By.xpath(".//button");
     private final By ARTICLE = By.tagName("article");
     private final By ARTICLE_TITLE = By.xpath(".//span[@itemprop = 'headline name']");
-    private final By COMMENTS_COUNT = By.xpath(".//span[contains(@class, 'list-article__comment')]");
+    private final By COMMENTS_COUNT = By.xpath(".//a[@class = 'article-share__item article-share__item--comments article-share__item-with-count']/span[@class= 'article-share__item--count']");
 
     private final By ARTICLE_PAGE_TITLE = By.xpath(".//h1[@itemprop = 'headline name']");
 
@@ -18,7 +21,7 @@ public class FirstFullTest {
 
     @Test
     public void titleCommentsCheck() {
-        LOGGER.info("This test is cheking titles and comments on TVNET page");
+        LOGGER.info("This test is checking titles and comments on TVNET page");
         System.setProperty("webdriver.chrome.driver", "C://chromedriver/chromedriver.exe");
 
         LOGGER.info("We are opening browser window");
@@ -28,8 +31,14 @@ public class FirstFullTest {
         driver.manage().window().maximize();
         driver.get("http://tvnet.lv");
 
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(ACCEPT_COOKIES_BTN));
+
+        WebElement acceptBtn = driver.findElement(ACCEPT_COOKIES_BTN);
+        acceptBtn.click();
+
         //Find article
-        WebElement currentArticle = driver.findElements(ARTICLE).get(3);
+        WebElement currentArticle = driver.findElements(ARTICLE).get(1);
 
         //Store title
 
