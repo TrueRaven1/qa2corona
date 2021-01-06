@@ -38,7 +38,7 @@ public class FirstFullTest {
         acceptBtn.click();
 
         //Find article
-        WebElement currentArticle = driver.findElements(ARTICLE).get(1);
+        WebElement currentArticle = driver.findElements(ARTICLE).get(0);
 
         //Store title
 
@@ -58,18 +58,23 @@ public class FirstFullTest {
         //Open article
         currentArticle.findElement(ARTICLE_TITLE).click();
 
-        //Chek title
-        String commentsCount1 = currentArticle.findElement(COMMENTS_COUNT).getText();
+        //Find and chek title
+        String articlePageTile = driver.findElement(ARTICLE_PAGE_TITLE).getText();
+//        Assertions.assertEquals(titleToCheck, articlePageTile, "Incorrect title");
+        Assertions.assertTrue(titleToCheck.startsWith(articlePageTile), "Incorrect title");
 
-        Assertions.assertEquals(titleToCheck, driver.findElement(ARTICLE_PAGE_TITLE).getText().concat(commentsCount1), "Incorrect title");
+
+        //Find and chek comments count
+//        String commentsCount = currentArticle.findElement(COMMENTS_COUNT).getText();
+//
+//        Assertions.assertEquals(titleToCheck, driver.findElement(ARTICLE_PAGE_TITLE).getText().concat(commentsCount), "Incorrect title");
 
 
-        //Chek comments
+        //Open comments page
 
-        //click on comments
+        //Find and check title
 
-        //Check title
-
-        //Check comments count
+        //Find and check comments count
+        //.//li[@class = 'article-comment']
     }
 }
