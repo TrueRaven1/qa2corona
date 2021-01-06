@@ -38,7 +38,7 @@ public class FirstFullTest {
         acceptBtn.click();
 
         //Find article
-        WebElement currentArticle = driver.findElements(ARTICLE).get(0);
+        WebElement currentArticle = driver.findElements(ARTICLE).get(3);
 
         //Store title
 
@@ -65,9 +65,9 @@ public class FirstFullTest {
 
 
         //Find and chek comments count
-//        String commentsCount = currentArticle.findElement(COMMENTS_COUNT).getText();
-//
-//        Assertions.assertEquals(titleToCheck, driver.findElement(ARTICLE_PAGE_TITLE).getText().concat(commentsCount), "Incorrect title");
+        String commentsCountInArticle = currentArticle.findElement(COMMENTS_COUNT).getText();
+
+        Assertions.assertEquals(commentCount, commentsCountInArticle, "Incorrect count");
 
 
         //Open comments page
