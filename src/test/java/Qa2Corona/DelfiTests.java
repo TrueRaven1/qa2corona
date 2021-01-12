@@ -1,3 +1,5 @@
+package Qa2Corona;
+
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

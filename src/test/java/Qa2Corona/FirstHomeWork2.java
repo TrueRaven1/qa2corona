@@ -1,3 +1,5 @@
+package Qa2Corona;
+
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.util.StringUtils;
 

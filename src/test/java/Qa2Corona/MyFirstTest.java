@@ -1,3 +1,5 @@
+package Qa2Corona;
+
 import org.junit.jupiter.api.Test;
 
 public class MyFirstTest {
