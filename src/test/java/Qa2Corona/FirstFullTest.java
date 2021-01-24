@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FirstFullTest {
-    private final By ACCEPT_COOKIES_BTN = By.xpath(".//button");
+    private final By ACCEPT_COOKIES_BTN = By.xpath(".//div[contains(@class, 'button cookie')]");
     private final By ARTICLE = By.tagName("article");
     private final By ARTICLE_TITLE = By.xpath(".//span[@itemprop = 'headline name']");
     private final By COMMENTS_COUNT = By.xpath(".//a[@class = 'article-share__item article-share__item--comments article-share__item-with-count']/span[@class= 'article-share__item--count']");
@@ -67,6 +67,12 @@ public class FirstFullTest {
 
 
         //Find and chek comments count
+//        int commentsCountInArticle = 0;
+
+//        if (!currentArticle.findElements(COMMENTS_COUNT).isEmpty()) {
+//            String commentsToParse = currentArticle.findElement(COMMENTS_COUNT).getText(); // (36)
+//            commentsCountInArticle = Integer.parseInt(commentsToParse);
+//        }
 //        String commentsCountInArticle = currentArticle.findElement(COMMENTS_COUNT).getText();
 //
 //        Assertions.assertEquals(commentCount, commentsCountInArticle, "Incorrect count");
