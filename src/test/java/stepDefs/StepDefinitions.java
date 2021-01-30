@@ -9,6 +9,5 @@ public class StepDefinitions {
         System.out.println("Hello, world!");
     }
 
-    @Given("printed {string}")
-    public void print_string(Stri)
+
 }
