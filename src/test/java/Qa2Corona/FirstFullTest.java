@@ -15,11 +15,13 @@ public class FirstFullTest {
     private final By ACCEPT_COOKIES_BTN = By.xpath(".//button[@mode ='primary']");
     private final By ARTICLE = By.tagName("article");
     private final By ARTICLE_TITLE = By.xpath(".//span[@itemprop = 'headline name']");
-    private final By COMMENTS_COUNT = By.xpath(".//a[@class = 'article-share__item article-share__item--comments article-share__item-with-count']/span[@class= 'article-share__item--count']");
+    private final By COMMENTS_COUNT = By.xpath(".//span[@class = 'list-article__headline']/span[@class= 'list-article__comment section-font-color']");
 
     private final By ARTICLE_PAGE_TITLE = By.xpath(".//h1[@itemprop = 'headline name']");
-    private final By ACCEPT_COOKIES_BTN_IN_ARTICLE = By.xpath(".//button[@mode ='primary']");
     private final By COMMENTS_COUNT_IN_ARTICLE = By.xpath(".//a[@class = 'article-share__item article-share__item--comments article-share__item-with-count']/span[@class= 'article-share__item--count']");
+
+    private final By ARTICLE_PAGE_TITLE_IN_COMMENTS = By.xpath(".//h1[@itemprop = 'headline name']");
+    private final By COMMENT_IN_ARTICLE_COMMENTS = By.xpath(".//li[@class = 'article-comment']");
 
     private final Logger LOGGER = LogManager.getLogger(FirstFullTest.class);
 
@@ -35,14 +37,14 @@ public class FirstFullTest {
         driver.manage().window().maximize();
         driver.get("http://tvnet.lv");
 
-        WebDriverWait wait = new WebDriverWait(driver, 20);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(ACCEPT_COOKIES_BTN));
 
         WebElement acceptBtn = driver.findElement(ACCEPT_COOKIES_BTN);
         acceptBtn.click();
 
         //Find article
-        WebElement currentArticle = driver.findElements(ARTICLE).get(3);
+        WebElement currentArticle = driver.findElements(ARTICLE).get(2);
 
         //Store title
 
@@ -62,18 +64,10 @@ public class FirstFullTest {
         //Open article
         currentArticle.findElement(ARTICLE_TITLE).click();
 
-        WebDriverWait waitInArticle = new WebDriverWait(driver, 20);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(ACCEPT_COOKIES_BTN_IN_ARTICLE));
-
-        WebElement acceptBtnArticle = driver.findElement(ACCEPT_COOKIES_BTN_IN_ARTICLE);
-        acceptBtnArticle.click();
-
         //Find and chek title
         String articlePageTile = driver.findElement(ARTICLE_PAGE_TITLE).getText();
 //        Assertions.assertEquals(titleToCheck, articlePageTile, "Incorrect title");
         Assertions.assertTrue(titleToCheck.startsWith(articlePageTile), "Incorrect title");
-
-
 
         //Find and chek comments count
         int commentCountInArticle = 0;
@@ -81,15 +75,22 @@ public class FirstFullTest {
             String commentsToParseInArticle = driver.findElement(COMMENTS_COUNT_IN_ARTICLE).getText(); // 36
             commentCountInArticle = Integer.parseInt(commentsToParseInArticle);
 
-//
         Assertions.assertEquals(commentCount, commentCountInArticle, "Incorrect count");
 
 
         //Open comments page
+        driver.findElement(COMMENTS_COUNT_IN_ARTICLE).click();
 
         //Find and check title
 
+        String articlePageTileInComments = driver.findElement(ARTICLE_PAGE_TITLE_IN_COMMENTS).getText();
+        Assertions.assertTrue(titleToCheck.startsWith(articlePageTileInComments), "Incorrect title");
+
         //Find and check comments count
+
+//        int commentsCountInArticleComments = driver.findElements(COMMENT_IN_ARTICLE_COMMENTS).get();
+
+
         //.//li[@class = 'article-comment']
     }
 }
