@@ -44,7 +44,7 @@ public class FirstFullTest {
         acceptBtn.click();
 
         //Find article
-        WebElement currentArticle = driver.findElements(ARTICLE).get(2);
+        WebElement currentArticle = driver.findElements(ARTICLE).get(7);
 
         //Store title
 
@@ -88,8 +88,8 @@ public class FirstFullTest {
 
         //Find and check comments count
 
-//        int commentsCountInArticleComments = driver.findElements(COMMENT_IN_ARTICLE_COMMENTS).get();
 
+        int commentsCountInArticleComments = driver.findElements(COMMENT_IN_ARTICLE_COMMENTS).size();
 
         //.//li[@class = 'article-comment']
     }

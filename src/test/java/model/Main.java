@@ -1,11 +1,16 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Main {
     private double temp;
     private int pressure;
     private int humidity;
-    private int temp_min;
-    private int temp_max;
+    @JsonProperty("temp_min")
+    private double min_temp;
+    @JsonProperty("temp_max")
+    private double max_temp;
+
 
     public double getTemp() {
         return temp;
@@ -31,19 +36,19 @@ public class Main {
         this.humidity = humidity;
     }
 
-    public int getTemp_min() {
-        return temp_min;
+    public double getTemp_min() {
+        return min_temp;
     }
 
-    public void setTemp_min(int temp_min) {
-        this.temp_min = temp_min;
+    public void setTemp_min(double temp_min) {
+        this.min_temp = temp_min;
     }
 
-    public int getTemp_max() {
-        return temp_max;
+    public double getTemp_max() {
+        return max_temp;
     }
 
-    public void setTemp_max(int temp_max) {
-        this.temp_max = temp_max;
+    public void setTemp_max(double temp_max) {
+        this.max_temp = temp_max;
     }
 }

@@ -1,22 +1,34 @@
 package stepDefs;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import model.WeatherResponse;
+import org.junit.jupiter.api.Assertions;
+import recuesters.WeatherRequester;
+
+import java.util.Map;
 
 public class WeatherStepDefs {
+    private int cityId;
+    private WeatherResponse response;
+
     @Given("city id: {int}")
     public void set_city_id(int cityId) {
-
+        this.cityId = cityId;
     }
 
     @When("we are requesting weather data")
-    public void request_weather() {
-
+    public void request_weather() throws JsonProcessingException {
+// call Weather Requester
+        WeatherRequester requester = new WeatherRequester();
+        response = requester.getWeather(cityId);
     }
 
     @Then("lon is {double}")
     public void check_lon(double lon) {
+        Assertions.assertEquals(lon, response.getCoord().getLon(), "Wrong lon");
 
     }
 
@@ -42,6 +54,11 @@ public class WeatherStepDefs {
 
     @Then("icon is {string}")
     public void check_icon(String icon) {
+
+    }
+
+    @Then("Base is {string}")
+    public void check_base(String Base) {
 
     }
 
@@ -128,6 +145,11 @@ public class WeatherStepDefs {
 
     @Then("cod is {int}")
     public void check_cod(int cod) {
+
+    }
+
+    @Then("main data is:")
+    public void check_main_data(Map<String, String> params) {
 
     }
 
