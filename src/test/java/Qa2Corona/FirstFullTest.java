@@ -17,6 +17,7 @@ public class FirstFullTest {
     private final By ARTICLE_TITLE = By.xpath(".//span[@itemprop = 'headline name']");
     private final By COMMENTS_COUNT = By.xpath(".//span[@class = 'list-article__headline']/span[@class= 'list-article__comment section-font-color']");
 
+    private final By ACCEPT_COOKIES_BTN_IN_ARTICLE = By.xpath(".//button[@mode ='primary']");
     private final By ARTICLE_PAGE_TITLE = By.xpath(".//h1[@itemprop = 'headline name']");
     private final By COMMENTS_COUNT_IN_ARTICLE = By.xpath(".//a[@class = 'article-share__item article-share__item--comments article-share__item-with-count']/span[@class= 'article-share__item--count']");
 
@@ -44,7 +45,7 @@ public class FirstFullTest {
         acceptBtn.click();
 
         //Find article
-        WebElement currentArticle = driver.findElements(ARTICLE).get(7);
+        WebElement currentArticle = driver.findElements(ARTICLE).get(3);
 
         //Store title
 
@@ -64,6 +65,12 @@ public class FirstFullTest {
         //Open article
         currentArticle.findElement(ARTICLE_TITLE).click();
 
+//        WebDriverWait wait1 = new WebDriverWait(driver, 10);
+//        wait1.until(ExpectedConditions.visibilityOfElementLocated(ACCEPT_COOKIES_BTN_IN_ARTICLE));
+//
+//        WebElement acceptBtnInArticle = driver.findElement(ACCEPT_COOKIES_BTN_IN_ARTICLE);
+//        acceptBtnInArticle.click();
+
         //Find and chek title
         String articlePageTile = driver.findElement(ARTICLE_PAGE_TITLE).getText();
 //        Assertions.assertEquals(titleToCheck, articlePageTile, "Incorrect title");
@@ -71,12 +78,13 @@ public class FirstFullTest {
 
         //Find and chek comments count
         int commentCountInArticle = 0;
+        if (!driver.findElements(COMMENTS_COUNT_IN_ARTICLE).isEmpty()) {
 
             String commentsToParseInArticle = driver.findElement(COMMENTS_COUNT_IN_ARTICLE).getText(); // 36
             commentCountInArticle = Integer.parseInt(commentsToParseInArticle);
 
-        Assertions.assertEquals(commentCount, commentCountInArticle, "Incorrect count");
-
+            Assertions.assertEquals(commentCount, commentCountInArticle, "Incorrect count");
+        }
 
         //Open comments page
         driver.findElement(COMMENTS_COUNT_IN_ARTICLE).click();
@@ -90,6 +98,8 @@ public class FirstFullTest {
 
 
         int commentsCountInArticleComments = driver.findElements(COMMENT_IN_ARTICLE_COMMENTS).size();
+        Assertions.assertEquals(commentCount, commentsCountInArticleComments, "Incorrect count in article comments");
+
 
         //.//li[@class = 'article-comment']
     }
