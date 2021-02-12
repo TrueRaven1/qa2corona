@@ -20,6 +20,7 @@ public class FirstFullTest {
     private final By ACCEPT_COOKIES_BTN_IN_ARTICLE = By.xpath(".//button[@mode ='primary']");
     private final By ARTICLE_PAGE_TITLE = By.xpath(".//h1[@itemprop = 'headline name']");
     private final By COMMENTS_COUNT_IN_ARTICLE = By.xpath(".//a[@class = 'article-share__item article-share__item--comments article-share__item-with-count']/span[@class= 'article-share__item--count']");
+    private final By ICON_OF_COMMENTS_IN_ARTICLE = By.xpath(".//span[@class =  'article-share__image-container social-button']/img[@src ='/v5/img/icons/comment-v2.svg']");
 
     private final By ARTICLE_PAGE_TITLE_IN_COMMENTS = By.xpath(".//h1[@itemprop = 'headline name']");
     private final By COMMENT_IN_ARTICLE_COMMENTS = By.xpath(".//li[@class = 'article-comment']");
@@ -34,26 +35,32 @@ public class FirstFullTest {
         LOGGER.info("We are opening browser window");
         WebDriver driver = new ChromeDriver();
 
-
+        LOGGER.info("Maximize window");
         driver.manage().window().maximize();
+        LOGGER.info("Opening URL http://tvnet.lv");
         driver.get("http://tvnet.lv");
 
+        LOGGER.info("Waiting until get visibility of button cookies");
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(ACCEPT_COOKIES_BTN));
 
+        LOGGER.info("Click on btn accept cookies");
         WebElement acceptBtn = driver.findElement(ACCEPT_COOKIES_BTN);
         acceptBtn.click();
 
         //Find article
-        WebElement currentArticle = driver.findElements(ARTICLE).get(3);
+        LOGGER.info("Driver finds article by the list");
+        WebElement currentArticle = driver.findElements(ARTICLE).get(8);
 
         //Store title
 
+        LOGGER.info("Saving title of article");
         String titleToCheck = currentArticle.findElement(ARTICLE_TITLE).getText();
         //String titleToCheck1 = titleToCheck.replaceAll("[()]", "");
 
 
         //Store comments count
+        LOGGER.info("If there is comments saves it count");
         int commentCount = 0;
 
         if (!currentArticle.findElements(COMMENTS_COUNT).isEmpty()) {
@@ -63,42 +70,55 @@ public class FirstFullTest {
         }
 
         //Open article
+        LOGGER.info("Click on article title");
         currentArticle.findElement(ARTICLE_TITLE).click();
 
-//        WebDriverWait wait1 = new WebDriverWait(driver, 10);
+//        LOGGER.info("Waiting until get visibility of button cookies");
+//        WebDriverWait wait1 = new WebDriverWait(driver, 20);
 //        wait1.until(ExpectedConditions.visibilityOfElementLocated(ACCEPT_COOKIES_BTN_IN_ARTICLE));
 //
+//        LOGGER.info("Click on btn accept cookies");
 //        WebElement acceptBtnInArticle = driver.findElement(ACCEPT_COOKIES_BTN_IN_ARTICLE);
 //        acceptBtnInArticle.click();
 
         //Find and chek title
-        String articlePageTile = driver.findElement(ARTICLE_PAGE_TITLE).getText();
-//        Assertions.assertEquals(titleToCheck, articlePageTile, "Incorrect title");
-        Assertions.assertTrue(titleToCheck.startsWith(articlePageTile), "Incorrect title");
+        LOGGER.info("Getting article title text");
+        String articlePageTitle = driver.findElement(ARTICLE_PAGE_TITLE).getText();
+//        Assertions.assertEquals(titleToCheck, articlePageTitle, "Incorrect title");
+        LOGGER.info("Compare title text");
+        Assertions.assertTrue(titleToCheck.startsWith(articlePageTitle), "Incorrect title");
 
-        //Find and chek comments count
+        //Find and check comments count
         int commentCountInArticle = 0;
+        LOGGER.info("Find comment count in article if they present");
         if (!driver.findElements(COMMENTS_COUNT_IN_ARTICLE).isEmpty()) {
-
             String commentsToParseInArticle = driver.findElement(COMMENTS_COUNT_IN_ARTICLE).getText(); // 36
             commentCountInArticle = Integer.parseInt(commentsToParseInArticle);
-
+            LOGGER.info("Compare comments count");
             Assertions.assertEquals(commentCount, commentCountInArticle, "Incorrect count");
         }
 
         //Open comments page
-        driver.findElement(COMMENTS_COUNT_IN_ARTICLE).click();
+
+        LOGGER.info("Waiting until get visibility of button comments page");
+        WebDriverWait wait2 = new WebDriverWait(driver, 20);
+        wait2.until(ExpectedConditions.visibilityOfElementLocated(ICON_OF_COMMENTS_IN_ARTICLE));
+
+        LOGGER.info("Click on comments page");
+        driver.findElement(ICON_OF_COMMENTS_IN_ARTICLE).click();
 
         //Find and check title
-
+        LOGGER.info("Find title on comments page and saves it");
         String articlePageTileInComments = driver.findElement(ARTICLE_PAGE_TITLE_IN_COMMENTS).getText();
-        Assertions.assertTrue(titleToCheck.startsWith(articlePageTileInComments), "Incorrect title");
+        LOGGER.info("Compare title text on comments page");
+        Assertions.assertTrue(titleToCheck.startsWith(articlePageTileInComments), "Incorrect title on comments page");
 
         //Find and check comments count
 
-
+        LOGGER.info("Find list of real comments and get number of it");
         int commentsCountInArticleComments = driver.findElements(COMMENT_IN_ARTICLE_COMMENTS).size();
-        Assertions.assertEquals(commentCount, commentsCountInArticleComments, "Incorrect count in article comments");
+        LOGGER.info("Compare comment count with real comments");
+        Assertions.assertEquals(commentCount, commentsCountInArticleComments, "Incorrect count on comments page");
 
 
         //.//li[@class = 'article-comment']
