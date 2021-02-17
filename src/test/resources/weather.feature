@@ -7,13 +7,13 @@ Feature: Weather API
 
     Then lon is 145.77
     And lat is -16.92
-
+#weather
     And id is 802
     And main is "Clouds"
     And description is "scattered clouds"
     And icon is "03n"
 
-#    And base is "stations"
+    And base is "stations"
 
 #    And temp is 300.15
 #    And pressure is 1007
@@ -29,14 +29,14 @@ Feature: Weather API
       | temp_max | 300.15 |
 
     And visibility is 10000
-
+#wind
     And speed is 3.6
     And deg is 160
-
+#clouds
     And all is 40
 
     And dt is 1485790200
-
+#sys
     And type is 1
     And id is 8166
     And message is 0.2064
