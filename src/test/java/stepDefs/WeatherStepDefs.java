@@ -41,25 +41,25 @@ public class WeatherStepDefs {
     }
 
     @Then("weather id is {int}")
-    public void check_weather_id(int id) {
-        Assertions.assertEquals(id, response.getWeathers().get(0).getId(), "Wrong weather id");
+    public void check_weather_id(int weatherId) {
+        Assertions.assertEquals(weatherId, response.getWeathers().get(0).getId(), "Wrong weather id");
 
     }
 
     @Then("main is {string}")
-    public void check_main(String main) {
+    public void check_weather_main(String main) {
         Assertions.assertEquals(main, response.getWeathers().get(0).getMain(), "Wrong weather main");
 
     }
 
     @Then("description is {string}")
-    public void check_description(String description) {
+    public void check_weather_description(String description) {
         Assertions.assertEquals(description, response.getWeathers().get(0).getDescription(), "Wrong weather description");
 
     }
 
     @Then("icon is {string}")
-    public void check_icon(String icon) {
+    public void check_weather_icon(String icon) {
         Assertions.assertEquals(icon, response.getWeathers().get(0).getIcon(), "Wrong weather icon");
 
     }

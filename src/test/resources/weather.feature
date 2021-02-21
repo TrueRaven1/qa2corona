@@ -12,6 +12,11 @@ Feature: Weather API
     And main is "Clouds"
     And description is "scattered clouds"
     And icon is "03n"
+#    And weather data is:
+#      | id          | 802              |
+#      | main        | Clouds           |
+#      | description | scattered clouds |
+#      | icon        | 03n              |
 
     And base is "stations"
 
