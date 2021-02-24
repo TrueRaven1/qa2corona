@@ -18,7 +18,8 @@ public class WeatherResponse {
     private Clouds clouds;
     private int dt;
     private Sys sys;
-    private int id;
+    @JsonProperty("id")
+    private int lastId;
     private String name;
     private int cod;
 
@@ -103,12 +104,12 @@ public class WeatherResponse {
         this.sys = sys;
     }
 
-    public int getId() {
-        return id;
+    public int getLastId() {
+        return lastId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setLastId(int lastId) {
+        this.lastId = lastId;
     }
 
     public String getName() {

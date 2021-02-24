@@ -20,18 +20,18 @@ Feature: Weather API
 
     And base is "stations"
 
-#    And temp is 300.15
-#    And pressure is 1007
-#    And humidity is 74
-#    And temp_min is 300.15
-#    And temp_max is 300.15
+    And temp is 300.15
+    And pressure is 1007
+    And humidity is 74
+    And temp_min is 300.15
+    And temp_max is 300.15
 
-    And main data is:
-      | temp     | 300.15 |
-      | pressure | 1007   |
-      | humidity | 74     |
-      | temp_min | 300.15 |
-      | temp_max | 300.15 |
+#    And main data is:
+#      | temp     | 300.15 |
+#      | pressure | 1007   |
+#      | humidity | 74     |
+#      | temp_min | 300.15 |
+#      | temp_max | 300.15 |
 
     And visibility is 10000
 #wind

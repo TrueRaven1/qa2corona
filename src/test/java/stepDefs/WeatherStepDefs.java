@@ -40,9 +40,9 @@ public class WeatherStepDefs {
 
     }
 
-    @Then("weather id is {int}")
-    public void check_weather_id(int weatherId) {
-        Assertions.assertEquals(weatherId, response.getWeathers().get(0).getId(), "Wrong weather id");
+    @Then("weather id {int}:")
+    public void check_weather_id(int id1) {
+        Assertions.assertEquals(id1, response.getWeathers().get(0).getWeatherId(), "Wrong weather id");
 
     }
 
@@ -137,8 +137,8 @@ public class WeatherStepDefs {
     }
 
     @Then("sys id is {int}")
-    public void check_sys_id(int id) {
-        Assertions.assertEquals(id, response.getSys().getId(), "Wrong sys id");
+    public void check_sys_id(int id2) {
+        Assertions.assertEquals(id2, response.getSys().getId(), "Wrong sys id");
 
     }
 
@@ -167,8 +167,8 @@ public class WeatherStepDefs {
     }
 
     @Then("id is {int}")
-    public void check_id(int id) {
-        Assertions.assertEquals(id, response.getId(), "Wrong id");
+    public void check_last_id(int id3) {
+        Assertions.assertEquals(id3, response.getLastId(), "Wrong id");
 
     }
 

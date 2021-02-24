@@ -4,11 +4,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pages.ArticlePage;
 import pages.BaseFunc;
+import pages.CommentPage;
 import pages.HomePage;
 
 public class PageObjectTest {
     private final Logger LOGGER = LogManager.getLogger(this.getClass());
-    private int articleId = 3;
+    private int articleId = 2;
+    private int commentId = 2;
 
     @Test
     public void tvnetPageObjectTest() {
@@ -32,6 +34,20 @@ public class PageObjectTest {
 //        Compare article titles
 //        Assertions.assertEquals(homePageTitle, articlePageTitle, "Titles are not the same");
         Assertions.assertTrue(homePageTitle.startsWith(articlePageTitle), "Titles are not the same" );
+
+
+        //Compare comments count
+//        Assertions.assertEquals(homePage.getCommentCountById(commentId),articlePage.getGetCommentCountInArticle(), "Incorect count");
+
+        //Open comments page
+        CommentPage commentPage = articlePage.openCommentPage();
+
+        //Find and chek title
+        String articlePageTitleInComments = commentPage.getTitleInComments();
+
+        Assertions.assertTrue(homePageTitle.startsWith(articlePageTitleInComments), "Title in comment page are not the same");
+
+        //Find and check comments count
 
     }
 }
