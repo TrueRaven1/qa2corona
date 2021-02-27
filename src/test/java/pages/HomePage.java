@@ -9,7 +9,8 @@ import org.openqa.selenium.WebElement;
 public class HomePage {
     private final By ACCEPT_BTN = By.xpath(".//button[@mode = 'primary']");
     private final By TITLE = By.xpath(".//span[@itemprop = 'headline name']");
-    private final By COMMENT_COUNT = By.xpath(".//span[contains(@class, '__comment')]");
+    private final By COMMENT_COUNT = By.xpath(".//span[@class = 'list-article__headline']/span[@class= 'list-article__comment section-font-color']");
+    private final By CLICK_BY_BLOCK = By.xpath(".//img[@style = 'display:block;']");
     private BaseFunc baseFunc;
 
     private final Logger LOGGER = LogManager.getLogger(this.getClass());
@@ -34,8 +35,14 @@ public class HomePage {
     }
 
     public int getCommentCountById(int id) {
+        WebElement commentsCount = baseFunc.findElements(COMMENT_COUNT).get(id);
+
         CommentsHelper helper = new CommentsHelper();
-        return helper.getCommentCount(baseFunc.findElement(COMMENT_COUNT));
+        return helper.getCommentCount(commentsCount);
+    }
+
+    public void clickByBlock() {
+        baseFunc.click(CLICK_BY_BLOCK);
     }
 
 }

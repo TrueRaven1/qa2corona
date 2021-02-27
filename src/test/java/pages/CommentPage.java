@@ -5,15 +5,19 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 
 public class CommentPage {
+
     private BaseFunc baseFunc;
 
     private final By TITLE_IN_COMMENT_PAGE = By.xpath(".//h1[@itemprop = 'headline name']");
     private final By COMMENTS_IN_COMMENT_PAGE = By.xpath(".//li[@class = 'article-comment']");
 
 
-
     private final Logger LOGGER = LogManager.getLogger(this.getClass());
 
+    public CommentPage(BaseFunc baseFunc) {
+        this.baseFunc = baseFunc;
+
+    }
 
 
     public String getTitleInComments() {
@@ -21,15 +25,12 @@ public class CommentPage {
         return baseFunc.getText(TITLE_IN_COMMENT_PAGE);
     }
 
-    int commentCountInArticle = 0;
+//    int commentCountInCommentPage = 0;
 
-         public int getCommentCountInArticle() {
+    public int getCommentCountInCommentPage() {
         LOGGER.info("Find list of real comments and get number of it");
-        if (!baseFunc.findElements(COMMENTS_IN_COMMENT_PAGE).isEmpty()) {
-            String commentsToParseInArticle = baseFunc.findElement(COMMENTS_IN_COMMENT_PAGE).getText(); // 36
-            commentCountInArticle = Integer.parseInt(commentsToParseInArticle);
-        }
-        return commentCountInArticle;
+        int commentCountInCommentPage = baseFunc.findElements(COMMENTS_IN_COMMENT_PAGE).size();
+        return commentCountInCommentPage;
     }
 
 
