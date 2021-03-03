@@ -12,7 +12,7 @@ import pages.HomePage;
 public class PageObjectTest {
     private final Logger LOGGER = LogManager.getLogger(this.getClass());
     private int articleId = 4;
-    private BaseFunc baseFunc = new BaseFunc();
+
 
     @Test
     public void tvnetPageObjectTest() {
@@ -37,9 +37,7 @@ public class PageObjectTest {
         Assertions.assertTrue(homePageTitle.startsWith(articlePageTitleInComments), "Title in comment page are not the same");
         Assertions.assertEquals(commentsCountInArticlePage, commentPage.getCommentCountInCommentPage(), "Incorrect count on comments page");
 
-    }
-    @AfterEach
-    public void close() {
         baseFunc.closeBroser();
     }
+
 }
