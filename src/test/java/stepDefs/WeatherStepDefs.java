@@ -10,6 +10,7 @@ import model.WeatherResponse;
 import org.junit.jupiter.api.Assertions;
 import recuesters.WeatherRequester;
 
+import java.util.List;
 import java.util.Map;
 
 public class WeatherStepDefs {
@@ -40,10 +41,9 @@ public class WeatherStepDefs {
 
     }
 
-    @Then("weather id {int}:")
-    public void check_weather_id(int id1) {
-        Assertions.assertEquals(id1, response.getWeathers().get(0).getWeatherId(), "Wrong weather id");
-
+    @Then("weather data is:")
+    public void check_weather_id(Map<String, String> params) {
+        Assertions.assertEquals(params.values(), response.getWeathers().get(0).getWeatherId(), "Wrong weather id");
     }
 
     @Then("main is {string}")

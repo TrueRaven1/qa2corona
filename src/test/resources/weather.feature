@@ -8,15 +8,15 @@ Feature: Weather API
     Then lon is 145.77
     And lat is -16.92
 #weather
-    And id is 802
-    And main is "Clouds"
-    And description is "scattered clouds"
-    And icon is "03n"
-#    And weather data is:
-#      | id          | 802              |
-#      | main        | Clouds           |
-#      | description | scattered clouds |
-#      | icon        | 03n              |
+#    And id is 802
+#    And main is "Clouds"
+#    And description is "scattered clouds"
+#    And icon is "03n"
+    And weather data is:
+      | id          | 802              |
+      | main        | Clouds           |
+      | description | scattered clouds |
+      | icon        | 03n              |
 
     And base is "stations"
 
