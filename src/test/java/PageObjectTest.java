@@ -13,7 +13,6 @@ public class PageObjectTest {
     private final Logger LOGGER = LogManager.getLogger(this.getClass());
     private int articleId = 4;
 
-
     @Test
     public void tvnetPageObjectTest() {
         LOGGER.info("This test is checking article title and comment counts");
