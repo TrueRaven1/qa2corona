@@ -68,4 +68,8 @@ public class BaseFunc {
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
         return driver.findElement(locator);
     }
+
+    public void closeBroser() {
+        driver.close();
+    }
 }

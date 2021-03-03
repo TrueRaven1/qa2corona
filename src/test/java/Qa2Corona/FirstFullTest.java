@@ -120,7 +120,6 @@ public class FirstFullTest {
         LOGGER.info("Compare comment count with real comments");
         Assertions.assertEquals(commentCount, commentsCountInArticleComments, "Incorrect count on comments page");
 
-
-        //.//li[@class = 'article-comment']
     }
+
 }

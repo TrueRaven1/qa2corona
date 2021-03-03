@@ -10,7 +10,6 @@ public class HomePage {
     private final By ACCEPT_BTN = By.xpath(".//button[@mode = 'primary']");
     private final By TITLE = By.xpath(".//span[@itemprop = 'headline name']");
     private final By COMMENT_COUNT = By.xpath(".//span[@class = 'list-article__headline']/span[@class= 'list-article__comment section-font-color']");
-    private final By CLICK_BY_BLOCK = By.xpath(".//img[@style = 'display:block;']");
     private BaseFunc baseFunc;
 
     private final Logger LOGGER = LogManager.getLogger(this.getClass());
@@ -24,14 +23,14 @@ public class HomePage {
     }
 
     public ArticlePage openArticleById(int id) {
-       WebElement articleToClick = baseFunc.findElements(TITLE).get(id);
-       baseFunc.click(articleToClick);
-       return new ArticlePage(baseFunc);
+        WebElement articleToClick = baseFunc.findElements(TITLE).get(id);
+        baseFunc.click(articleToClick);
+        return new ArticlePage(baseFunc);
     }
 
     public String getArticleTitleById(int id) {
         LOGGER.info("Getting articles Nr. " + id + " title");
-        return baseFunc.getText(TITLE, id );
+        return baseFunc.getText(TITLE, id);
     }
 
     public int getCommentCountById(int id) {
@@ -41,8 +40,5 @@ public class HomePage {
         return helper.getCommentCount(commentsCount);
     }
 
-    public void clickByBlock() {
-        baseFunc.click(CLICK_BY_BLOCK);
-    }
 
 }
