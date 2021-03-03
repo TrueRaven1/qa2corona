@@ -1,5 +1,6 @@
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
@@ -11,7 +12,7 @@ import pages.HomePage;
 public class PageObjectTest {
     private final Logger LOGGER = LogManager.getLogger(this.getClass());
     private int articleId = 4;
-
+    private BaseFunc baseFunc = new BaseFunc();
 
     @Test
     public void tvnetPageObjectTest() {
@@ -22,43 +23,23 @@ public class PageObjectTest {
 
         HomePage homePage = new HomePage(baseFunc);
         homePage.acceptCookies();
-//        homePage.clickByBlock();
-        //Get article title on Home page
+
         String homePageTitle = homePage.getArticleTitleById(articleId);
 
-//        homePage.openArticleById(articleId);
-//
-//        ArticlePage articlePage = new ArticlePage(baseFunc);
         ArticlePage articlePage = homePage.openArticleById(articleId);
-//        Get article title on Article Page
         String articlePageTitle = articlePage.getTitle();
-//        articlePage.clickByBlock();
-
-
-        //        Compare article titles
-//        Assertions.assertEquals(homePageTitle, articlePageTitle, "Titles are not the same");
         Assertions.assertTrue(homePageTitle.startsWith(articlePageTitle), "Titles are not the same");
+        Integer commentsCountInArticlePage = articlePage.getCommentCountInArticle();
 
-
-        //Compare comments count
-//        int commentsCountInArticle = articlePage.getCommentCountInArticle();
-//
-//        Assertions.assertEquals(homePageTitle.contentEquals(commentsCountInArticle), "Incorect count");
-
-
-        //Open comments page
         articlePage.openCommentPage();
         CommentPage commentPage = new CommentPage(baseFunc);
-
-        //Find and chek title
-
         String articlePageTitleInComments = commentPage.getTitleInComments();
-
         Assertions.assertTrue(homePageTitle.startsWith(articlePageTitleInComments), "Title in comment page are not the same");
+        Assertions.assertEquals(commentsCountInArticlePage, commentPage.getCommentCountInCommentPage(), "Incorrect count on comments page");
 
-        //Find and check comments count
-
-        Assertions.assertEquals(articlePage.getCommentCountInArticle(), commentPage.getCommentCountInCommentPage(), "Incorrect count on comments page");
-
+    }
+    @AfterEach
+    public void close() {
+        baseFunc.closeBroser();
     }
 }
