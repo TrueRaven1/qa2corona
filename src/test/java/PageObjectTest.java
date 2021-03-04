@@ -36,7 +36,7 @@ public class PageObjectTest {
         Assertions.assertTrue(homePageTitle.startsWith(articlePageTitleInComments), "Title in comment page are not the same");
         Assertions.assertEquals(commentsCountInArticlePage, commentPage.getCommentCountInCommentPage(), "Incorrect count on comments page");
 
-        baseFunc.closeBroser();
+        baseFunc.closeBrowser();
     }
 
 }

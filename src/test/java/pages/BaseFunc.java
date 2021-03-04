@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -30,6 +31,12 @@ public class BaseFunc {
 
     public void openUrl(String url) {
         LOGGER.info("Opening " + url + " web page");
+
+
+        if (!url.startsWith("http://") && !url.startsWith("https://")) {
+            url = "http://" + url;
+        }
+
         driver.get(url);
     }
 
@@ -69,7 +76,19 @@ public class BaseFunc {
         return driver.findElement(locator);
     }
 
-    public void closeBroser() {
+    public void closeBrowser() {
+        LOGGER.info("Closing browser window");
         driver.close();
+    }
+
+    public void type(By locator, String text) {
+        WebElement input = findElement(locator);
+        input.clear();
+        input.sendKeys(text);
+    }
+
+    public void select(By locator, String value) {
+        Select select = new Select(findElement(locator));
+        select.selectByValue(value);
     }
 }
