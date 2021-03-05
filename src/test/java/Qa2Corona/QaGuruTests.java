@@ -23,7 +23,7 @@ public class QaGuruTests {
     public void registrationCheck() {
         LOGGER.info("This test will check registration happy path");
 
-        BaseFunc baseFunc = new BaseFunc();
+//        BaseFunc baseFunc = new BaseFunc();
         baseFunc.openUrl(URL);
 
         HomePage homePage = new HomePage(baseFunc);

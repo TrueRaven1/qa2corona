@@ -18,7 +18,6 @@ public class PageObjectTest {
     public void tvnetPageObjectTest() {
         LOGGER.info("This test is checking article title and comment counts");
 
-        BaseFunc baseFunc = new BaseFunc();
         baseFunc.openUrl("http://tvnet.lv");
 
         HomePage homePage = new HomePage(baseFunc);
@@ -37,7 +36,6 @@ public class PageObjectTest {
         Assertions.assertTrue(homePageTitle.startsWith(articlePageTitleInComments), "Title in comment page are not the same");
         Assertions.assertEquals(commentsCountInArticlePage, commentPage.getCommentCountInCommentPage(), "Incorrect count on comments page");
 
-//        baseFunc.closeBrowser();
     }
     @AfterEach
     public void closeBrowser () {
