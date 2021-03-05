@@ -49,7 +49,7 @@ public class QaGuruTests {
     }
 
     @AfterEach
-    public void closeBrowser() {
+    public void close() {
         baseFunc.closeBrowser();
     }
 }
