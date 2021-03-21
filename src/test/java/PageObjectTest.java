@@ -9,9 +9,11 @@ import pages.BaseFunc;
 import pages.CommentPage;
 import pages.HomePage;
 
+import java.util.List;
+
 public class PageObjectTest {
     private final Logger LOGGER = LogManager.getLogger(this.getClass());
-    private int articleId = 4;
+    private int articleId = 2;
     private BaseFunc baseFunc = new BaseFunc();
 
     @Test
@@ -22,10 +24,25 @@ public class PageObjectTest {
 
         HomePage homePage = new HomePage(baseFunc);
         homePage.acceptCookies();
+        homePage.closeAdsBtn();
+
+        List<WebElement> titles = homePage.getTitles();
+        List<WebElement> comments = homePage.getComments();
+
+        for (int i = 0; i < titles.size(); i++){
+
+
+            if (comments.size() > i) {
+                System.out.println(titles.get(i).getText() + " :: " + comments.get(i).getText());
+            } else {
+                System.out.println(titles.get(i).getText() + " ------ ");
+            }
+        }
 
         String homePageTitle = homePage.getArticleTitleById(articleId);
 
         ArticlePage articlePage = homePage.openArticleById(articleId);
+        articlePage.closeAdsBtn();
         String articlePageTitle = articlePage.getTitle();
         Assertions.assertTrue(homePageTitle.startsWith(articlePageTitle), "Titles are not the same");
         Integer commentsCountInArticlePage = articlePage.getCommentCountInArticle();
@@ -37,9 +54,9 @@ public class PageObjectTest {
         Assertions.assertEquals(commentsCountInArticlePage, commentPage.getCommentCountInCommentPage(), "Incorrect count on comments page");
 
     }
-    @AfterEach
-    public void closeBrowser () {
-        baseFunc.closeBrowser();
-    }
+//    @AfterEach
+//    public void closeBrowser () {
+//        baseFunc.closeBrowser();
+//    }
 
 }

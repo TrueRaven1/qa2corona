@@ -12,6 +12,7 @@ public class CommentPage {
     private final By COMMENTS_IN_COMMENT_PAGE = By.xpath(".//li[@class = 'article-comment']");
 
 
+
     private final Logger LOGGER = LogManager.getLogger(this.getClass());
 
     public CommentPage(BaseFunc baseFunc) {

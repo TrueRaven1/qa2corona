@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class BaseFunc {
     private final Logger LOGGER = LogManager.getLogger(this.getClass());
@@ -90,5 +92,22 @@ public class BaseFunc {
     public void select(By locator, String value) {
         Select select = new Select(findElement(locator));
         select.selectByValue(value);
+    }
+
+    public void waitForElementToBeVisible (By locator) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public boolean isElementPresents(By locator) {
+        try {
+            wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
+
+    }
+    public void waitForElementDisappears(By locator) {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 }
