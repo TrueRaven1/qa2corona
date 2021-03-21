@@ -46,6 +46,7 @@ public class HomePage {
     public String getArticleTitleById(int id) {
         LOGGER.info("Getting articles Nr. " + id + " title");
         return baseFunc.getText(TITLE, id);
+
     }
 
     public int getCommentCountById(int id) {
