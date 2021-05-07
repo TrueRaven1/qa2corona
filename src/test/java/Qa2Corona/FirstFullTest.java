@@ -2,7 +2,6 @@ package Qa2Corona;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -26,7 +25,7 @@ public class FirstFullTest {
     private final By COMMENT_IN_ARTICLE_COMMENTS = By.xpath(".//li[@class = 'article-comment']");
 
     private final Logger LOGGER = LogManager.getLogger(FirstFullTest.class);
-    public WebDriver driver = null;
+
 
     @Test
     public void titleCommentsCheck() {
@@ -99,12 +98,7 @@ public class FirstFullTest {
         LOGGER.info("Compare comment count with real comments");
         Assertions.assertEquals(commentCount, commentsCountInArticleComments, "Incorrect count on comments page");
 
-
-    }
-
-    @AfterEach
-    public void closeBrowser () {
-        System.setProperty("webdriver.chrome.driver", "C://chromedriver/chromedriver.exe");
         driver.close();
+
     }
 }
