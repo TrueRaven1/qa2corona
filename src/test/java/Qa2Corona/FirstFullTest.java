@@ -2,6 +2,7 @@ package Qa2Corona;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -13,19 +14,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FirstFullTest {
     private final By ACCEPT_COOKIES_BTN = By.xpath(".//button[@mode ='primary']");
+    private final By CLOSE_ADS_BTN = By.xpath(".//div[contains(@style, 'z-index: 61000;')]");
     private final By ARTICLE = By.tagName("article");
     private final By ARTICLE_TITLE = By.xpath(".//span[@itemprop = 'headline name']");
-    private final By COMMENTS_COUNT = By.xpath(".//span[@class = 'list-article__headline']/span[@class= 'list-article__comment section-font-color']");
+    private final By COMMENTS_COUNT = By.xpath(".//span[@class = 'list-article__headline']/span[contains(@class, 'list-article__com')]");
 
     private final By ARTICLE_PAGE_TITLE = By.xpath(".//h1[@itemprop = 'headline name']");
-    private final By COMMENTS_COUNT_IN_ARTICLE = By.xpath(".//a[@class = 'article-share__item article-share__item--comments article-share__item-with-count']/span[@class= 'article-share__item--count']");
-    private final By ICON_OF_COMMENTS_IN_ARTICLE = By.xpath(".//span[@class =  'article-share__image-container social-button']/img[@src ='/v5/img/icons/comment-v2.svg']");
+    private final By COMMENTS_COUNT_IN_ARTICLE = By.xpath(".//a[contains(@class, 'article-share__item article-share__item--co')]/span[@class= 'article-share__item--count']");
+    private final By ICON_OF_COMMENTS_IN_ARTICLE = By.xpath(".//span[contains(@class, 'article-share')]/img[@src ='/v5/img/icons/comment-v2.svg']");
 
     private final By ARTICLE_PAGE_TITLE_IN_COMMENTS = By.xpath(".//h1[@itemprop = 'headline name']");
     private final By COMMENT_IN_ARTICLE_COMMENTS = By.xpath(".//li[@class = 'article-comment']");
 
     private final Logger LOGGER = LogManager.getLogger(FirstFullTest.class);
-
+    private WebDriver driver;
 
     @Test
     public void titleCommentsCheck() {
@@ -33,7 +35,7 @@ public class FirstFullTest {
         System.setProperty("webdriver.chrome.driver", "C://chromedriver/chromedriver.exe");
 
         LOGGER.info("We are opening browser window");
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
 
         LOGGER.info("Maximize window");
         driver.manage().window().maximize();
@@ -49,7 +51,7 @@ public class FirstFullTest {
         acceptBtn.click();
 
         LOGGER.info("Driver finds article by the list");
-        WebElement currentArticle = driver.findElements(ARTICLE).get(1);
+        WebElement currentArticle = driver.findElements(ARTICLE).get(0);
 
         LOGGER.info("Saving title of article");
         String titleToCheck = currentArticle.findElement(ARTICLE_TITLE).getText();
@@ -62,6 +64,13 @@ public class FirstFullTest {
             commentsToParse = commentsToParse.substring(1, commentsToParse.length() - 1);
             commentCount = Integer.parseInt(commentsToParse);
         }
+
+        LOGGER.info("Wait until ads button visibility");
+        WebDriverWait waitAds = new WebDriverWait(driver, 10);
+        waitAds.until(ExpectedConditions.visibilityOfElementLocated(CLOSE_ADS_BTN));
+        LOGGER.info("Click on advertising line if present");
+        WebElement adsBtn = driver.findElement(CLOSE_ADS_BTN);
+        adsBtn.click();
 
         LOGGER.info("Click on article title");
         currentArticle.findElement(ARTICLE_TITLE).click();
@@ -98,7 +107,10 @@ public class FirstFullTest {
         LOGGER.info("Compare comment count with real comments");
         Assertions.assertEquals(commentCount, commentsCountInArticleComments, "Incorrect count on comments page");
 
-        driver.close();
+    }
 
+        @AfterEach
+    public void closeBrowser () {
+        driver.close();
     }
 }
